@@ -1,38 +1,45 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Jura:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jura:wght@300..700&family=Sofia+Sans:ital,wght@0,1..1000;1,1..1000&display=swap');
+
+*{
+    font-family: 'Jura', sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+html, body{
+    margin: 0;
+    height: 100%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body{
+    display: flex;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.divNav{
+    display: flex;
+    height: 100%;
+    align-items: stretch;
+
 }
 
-.App-link {
-  color: #61dafb;
+.navbar{
+    background-image: linear-gradient(red,yellow);
+    border-top-right-radius: 2em;
+    border-bottom-right-radius: 2em;
+    justify-content: space-between;
+    align-items: start;
+    display: flex;
+    flex-direction: column;
+    margin: 0em;
+    padding: 0em;
+    width: 50%;
+    height: 100%;
+
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.navbar ul{
+list-style: none;
+}
+
+.navbar li{
+    
 }
