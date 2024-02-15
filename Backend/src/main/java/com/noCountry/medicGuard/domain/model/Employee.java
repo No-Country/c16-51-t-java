@@ -20,13 +20,10 @@ public class Employee {
 //    Calendar class is missing
 //    private final Calendar calendar
 
-
     private int professionalRegistration;
 
-//    Enumerated directory and profession Enum aregit pull missing
-//    @Enumerated(EnumType.STRING)
-//    private Profession profession;
-
+    @Enumerated(EnumType.STRING)
+    private Profession profession;
 
     private Boolean isActive;
     private List<Date> daysNotAvailable;
