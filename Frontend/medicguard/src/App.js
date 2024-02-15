@@ -6,38 +6,42 @@ import Home from './Components/Home';
 
 function App() {
   return (
-   <>
-   <BrowserRouter>
-    <div className='divNav'>
-      <nav className='navbar'>
-        <ul>
-          <li>
-            <Link to="/"> Home </Link>
-          </li>
-          <li>
-            <Link to="/calendario"> Calendario </Link>
-          </li>
-          <li>
-            <Link to="/guardia"> Guardias </Link>
-          </li>
-        </ul>
-      </nav>
+    <>
+      <BrowserRouter>
+        <div className='divNav'>
+          <nav className='navbar'>
+            <ul>
+              <li>
+                
 
-      <hr/>
+              </li>
+              <li>
+                <Link to="/"> Home </Link>
+              </li>
+              <li>
+                <Link to="/calendar"> Calendario </Link>
+              </li>
+              <li>
+                <Link to="/guards"> Guardias </Link>
+              </li>
+            </ul>
+          </nav>
 
-      <Routes>
-        <Route path="/calendario" element={<Calendar/>}/> 
-         
-        <Route path="/guardia" element={<Guards/>}/>
-       
-        <Route path="/" element={<Home/>}/>
-       
-      </Routes>
+          <hr />
 
-    </div>
+          <Routes>
+            <Route path="/calendar" element={<Calendar />} />
 
-   </BrowserRouter>
-   </>
+            <Route path="/guards" element={<Guards />} />
+
+            <Route path="/" element={<Home />} />
+
+          </Routes>
+
+        </div>
+
+      </BrowserRouter>
+    </>
   );
 }
 
