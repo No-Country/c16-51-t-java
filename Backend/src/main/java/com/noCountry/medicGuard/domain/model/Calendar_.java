@@ -14,14 +14,12 @@ import lombok.RequiredArgsConstructor;
 @Entity
 public class Calendar_ {
 
-    @Id
-    @GeneratedValue
-    @Column(nullable = false)
-    private Integer id;
+  @Id
+  @GeneratedValue
+  @Column(nullable = false)
+  private Integer id;
 
-    private final Employee employee;
+  private final Employee employee;
 
-    // Do a pull from the developer when the DiasDeGuardia entity has been created
-    private final DiasDeGuardia diasDeGuardia;
-
+  private final DaysGuard daysGuard;
 }
