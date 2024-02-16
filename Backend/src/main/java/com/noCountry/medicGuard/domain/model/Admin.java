@@ -10,6 +10,5 @@ import lombok.RequiredArgsConstructor;
 @Entity
 public class Admin {
 
-  //    Entity Calendars must be created
-  //    private final Calendar calendar;
+      private final Calendar_ calendar_;
 }
