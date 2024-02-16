@@ -8,22 +8,27 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <div className='divNav'>
+        <div className='div-nav'>
           <nav className='navbar'>
             <ul>
-              <li>
-                
 
-              </li>
+                <div className='list-item'>
+                  <img src='image.png' alt='Logo' className='logo' />
+                  <span> MedicGuard </span>
+                </div>
+
               <li>
                 <Link to="/"> Home </Link>
               </li>
+
               <li>
                 <Link to="/calendar"> Calendario </Link>
               </li>
+
               <li>
                 <Link to="/guards"> Guardias </Link>
               </li>
+
             </ul>
           </nav>
 
