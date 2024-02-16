@@ -17,8 +17,7 @@ import lombok.RequiredArgsConstructor;
 @Entity
 public class Employee {
 
-//    Calendar class is missing
-//    private final Calendar calendar
+    private final Calendar_ calendar_;
 
     private int professionalRegistration;
 
