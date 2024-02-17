@@ -4,6 +4,8 @@ package com.noCountry.medicGuard.domain.model;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,10 +19,10 @@ public class DaysGuard {
     @Column(nullable = false)
     private Integer id;
 
-    private LocalTime startDate;
+    private LocalDateTime  startDate;
 
-    private LocalTime endDate;
+    private LocalDateTime  endDate;
 
-    private Long guardDuration;
+    private LocalDateTime guardDuration;
 
 }
