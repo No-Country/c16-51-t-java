@@ -1,14 +1,12 @@
 package com.noCountry.medicGuard.domain.model;
 
+import com.noCountry.medicGuard.enumeration.Rol;
 import jakarta.persistence.Entity;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
 
-@Data
-@RequiredArgsConstructor
 @Entity
-public class Admin {
+public class Admin extends Person{
 
-      private final Calendar_ calendar_;
+    public Admin(Integer id, String name, String lastname, String email, String user, String pass, Rol rol, Calendar_ calendar) {
+            super(id, name, lastname, email, user, pass, rol);
+    }
 }
