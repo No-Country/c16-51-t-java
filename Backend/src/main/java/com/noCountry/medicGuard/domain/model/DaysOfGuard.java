@@ -1,21 +1,23 @@
 package com.noCountry.medicGuard.domain.model;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
 import java.time.LocalTime;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+
+import lombok.*;
 
 @Data
 @AllArgsConstructor
-public class DaysGuard {
+@NoArgsConstructor
+@Entity
+@Table(name = "DAYS_OF_GUARD")
+public class DaysOfGuard {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-    private Integer id;
+    private Integer idDaysOfGuard;
 
     private LocalTime startDate;
 

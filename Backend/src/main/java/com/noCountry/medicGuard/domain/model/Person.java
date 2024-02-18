@@ -2,12 +2,14 @@ package com.noCountry.medicGuard.domain.model;
 
 import com.noCountry.medicGuard.enumeration.Rol;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 
 @Data
 @AllArgsConstructor
-public class Person {
+@NoArgsConstructor
+@Entity
+@Table(name = "PERSON")
+public abstract class Person {
 
   @Id
   @GeneratedValue
