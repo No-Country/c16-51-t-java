@@ -1,23 +1,15 @@
 package com.noCountry.medicGuard.domain.model;
 
 import com.noCountry.medicGuard.enumeration.Profession;
+import com.noCountry.medicGuard.enumeration.Rol;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import java.util.Date;
 import java.util.List;
 
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
-
-@Data
-@AllArgsConstructor
-@RequiredArgsConstructor
 @Entity
-public class Employee {
-
-    private final Calendar_ calendar_;
+public class Employee extends Person{
 
     private int professionalRegistration;
 
@@ -29,4 +21,8 @@ public class Employee {
     private int weekDayCounter;
     private int weekendDayCounter;
     private int holidayCounter;
+
+    public Employee(Integer id, String name, String lastname, String email, String user, String pass, Rol rol, Calendar_ calendar) {
+        super(id, name, lastname, email, user, pass, rol);
+    }
 }
