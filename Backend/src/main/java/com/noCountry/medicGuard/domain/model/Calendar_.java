@@ -19,7 +19,7 @@ public class Calendar_ {
   @Column(nullable = false)
   private Integer id;
 
-  private final Employee employee;
+  final Employee employee;
 
-  private final DaysGuard daysGuard;
+  final DaysGuard daysGuard;
 }
