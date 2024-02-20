@@ -6,6 +6,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    border: none;
+
 }
 
 
@@ -17,6 +19,7 @@ body {
     margin: 0;
     background-color: #F0F0F5;
     font-family: 'Jura';
+
 
 }
 
@@ -32,8 +35,8 @@ body {
 .navbar {
     background-image: linear-gradient(#321B7F, #098654);
     color: rgb(10, 8, 8);
-    border-top-right-radius: 2em;
-    border-bottom-right-radius: 2em;
+    /*border-top-right-radius: 2em;
+    border-bottom-right-radius: 2em;*/
     justify-content: space-between;
     align-items: start;
     display: flex;

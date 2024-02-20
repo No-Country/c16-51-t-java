@@ -3,7 +3,7 @@ import Calendar from 'react-calendar';
 import '../Calendar-style.css';
 import { formatMonthYear } from './Custom-calendar';
 
-const Calendario = () => {
+const UserCalendar = () => {
 
     const [dayNotAvailable, setDayNotAvailable] = useState([]);
     const [confirmationMessage, setConfirmationMessage] = useState("");
@@ -68,4 +68,4 @@ const Calendario = () => {
     );
 };
 
-export default Calendario;
+export default UserCalendar;

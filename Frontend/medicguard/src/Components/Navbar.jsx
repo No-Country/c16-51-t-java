@@ -1,7 +1,7 @@
 
-import '../App.css';
+import '../Navbar.css';
 import { BrowserRouter, Link, Route , Routes  } from 'react-router-dom';
-import Calendar from '../Components/Calendar';
+import UserCalendar from './UserCalendar';
 import Guards from '../Components/Guards';
 import Home from '../Components/Home';
 
@@ -36,7 +36,7 @@ function Navbar() {
                     <hr />
 
                     <Routes>
-                        <Route path="/calendar" element={<Calendar />} />
+                        <Route path="/calendar" element={<UserCalendar />} />
 
                         <Route path="/guards" element={<Guards />} />
 
