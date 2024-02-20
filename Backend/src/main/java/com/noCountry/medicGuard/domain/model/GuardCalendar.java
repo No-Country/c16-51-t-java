@@ -6,7 +6,6 @@ import lombok.*;
 import java.util.*;
 
 @AllArgsConstructor
-@RequiredArgsConstructor
 @NoArgsConstructor
 @Data
 @Entity
@@ -22,5 +21,8 @@ public class GuardCalendar {
   private Employee employee;
 
   @OneToMany
-  private List<DaysOfGuard> daysOfGuards = new ArrayList<>();
+  private List<DayOfGuard> dayOfGuards = new ArrayList<>();
+
+  @OneToMany
+  private List<UnavailableDayOfGuard> unavailableDayOfGuards = new ArrayList<>();
 }

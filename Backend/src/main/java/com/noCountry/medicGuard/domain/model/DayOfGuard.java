@@ -3,7 +3,7 @@ package com.noCountry.medicGuard.domain.model;
 
 import jakarta.persistence.*;
 
-import java.time.LocalTime;
+import java.time.*;
 
 import lombok.*;
 
@@ -12,16 +12,16 @@ import lombok.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "DAYS_OF_GUARD")
-public class DaysOfGuard {
+public class DayOfGuard {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-    private Integer idDaysOfGuard;
+    private Integer idDayOfGuard;
 
-    private LocalTime startDate;
+    private LocalDate startDate;
 
-    private LocalTime endDate;
+    private LocalDate endDate;
 
     private Long guardDuration;
 

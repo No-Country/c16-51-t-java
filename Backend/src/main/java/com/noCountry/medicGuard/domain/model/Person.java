@@ -7,14 +7,8 @@ import lombok.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name = "PERSON")
+@MappedSuperclass
 public abstract class Person {
-
-  @Id
-  @GeneratedValue
-  @Column(nullable = false)
-  private Integer id;
 
   @Column(nullable = false)
   private String name;
@@ -26,7 +20,7 @@ public abstract class Person {
   private String email;
 
   @Column(nullable = false, unique = true)
-  private String user;
+  private String username;
 
   @Column(nullable = false)
   private String pass;

@@ -7,7 +7,6 @@ import java.util.*;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-@RequiredArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "ADMIN")
