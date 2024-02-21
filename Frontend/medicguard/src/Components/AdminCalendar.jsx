@@ -2,7 +2,7 @@ import '../static/AdminCalendar.css';
 import { Calendar, dayjsLocalizer } from 'react-big-calendar';
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import dayjs from 'dayjs';
-import moment from 'moment';
+
 
 const AdminCalendar = () => {
 
@@ -25,7 +25,7 @@ const AdminCalendar = () => {
         next: 'Siguiente',
         previous: 'Anterior',
         today: 'Hoy',
-        month: 'Mes',
+        month: 'Mes',   
         week: 'Semana',
         day: 'Día',
       };

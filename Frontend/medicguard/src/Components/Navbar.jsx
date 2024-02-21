@@ -40,6 +40,7 @@ function Navbar() {
                     <hr />
 
                     <Routes>
+
                         <Route path="/user/calendar" element={<UserCalendar />} />
 
                         <Route path="/admin/calendar" element={<AdminCalendar />} />
