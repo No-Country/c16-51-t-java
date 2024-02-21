@@ -1,9 +1,9 @@
-
-import '../Navbar.css';
+import '../static/Navbar.css';
 import { BrowserRouter, Link, Route , Routes  } from 'react-router-dom';
 import UserCalendar from './UserCalendar';
 import Guards from '../Components/Guards';
 import Home from '../Components/Home';
+import AdminCalendar from './AdminCalendar';
 
 function Navbar() {
     return (
@@ -23,7 +23,11 @@ function Navbar() {
                             </li>
 
                             <li>
-                                <Link to="/calendar"> Calendario </Link>
+                                <Link to="/user/calendar"> Calendario </Link>
+                            </li>
+
+                            <li>
+                            <Link to="/admin/calendar"> Calendario </Link>
                             </li>
 
                             <li>
@@ -36,7 +40,9 @@ function Navbar() {
                     <hr />
 
                     <Routes>
-                        <Route path="/calendar" element={<UserCalendar />} />
+                        <Route path="/user/calendar" element={<UserCalendar />} />
+
+                        <Route path="/admin/calendar" element={<AdminCalendar />} />
 
                         <Route path="/guards" element={<Guards />} />
 

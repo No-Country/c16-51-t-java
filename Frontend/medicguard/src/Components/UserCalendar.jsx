@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Calendar from 'react-calendar';
-import '../Calendar-style.css';
+import '../static/Calendar-style.css';
 import { formatMonthYear } from './Custom-calendar';
 
 const UserCalendar = () => {
@@ -28,7 +28,7 @@ const UserCalendar = () => {
        
         // FUNCION PARA ENVIAR DATOS AL BACKEND
 
-        if (dayNotAvailable.length != 0) {
+        if (dayNotAvailable.length !== 0) {
             setConfirmationMessage("Días seleccionados con éxito!");
             console.log("Días no disponibles:", dayNotAvailable);
         } else {
@@ -54,6 +54,7 @@ const UserCalendar = () => {
             <h1 className="title">Calendario</h1>
             <p className="above-calendar">Selecciona los días que <b>NO</b> puedes hacer guardia</p>
             <Calendar
+            className={"UserCalendar"}
                 key={dayNotAvailable.length}
                 formatMonthYear={formatMonthYear}
                 onClickDay={handleDayClick}

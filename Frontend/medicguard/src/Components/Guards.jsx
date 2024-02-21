@@ -1,7 +1,6 @@
 import React from "react";
-import '../Calendar-style.css';
 
-const Guardia = () => {
+const Guard = () => {
     return (
     <>
 
@@ -23,4 +22,4 @@ const Guardia = () => {
     );
 };
 
-export default Guardia;
+export default Guard;
