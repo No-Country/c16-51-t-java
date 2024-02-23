@@ -1,3 +1,4 @@
+import './Css/styles.css'
 import React from 'react';
 import Logo from './Logo';
 import LoginForm from './LoginForm'
