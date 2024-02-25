@@ -8,6 +8,7 @@ const Header = () => {
         <>
             <Navbar className="header">
                 <Container>
+                    <Navbar.Brand href="#home">Medic Guard</Navbar.Brand>
                     <Button className="logOut">Cerrar Sesión</Button>
                 </Container>
             </Navbar>
