@@ -3,7 +3,8 @@ package com.noCountry.medicGuard.util.exception;
 public enum EmployeeError {
     ERR0001("El nombre o apellido no coincide con los empleados existentes"),
     ERR0002("No existen empleados"),
-    ERR0003("Ya existe un empleado con ese email");
+    ERR0003("Ya existe un empleado con ese email"),
+    ERR0004("No existe empleado con esa matricula");
 
     private String description = null;
 

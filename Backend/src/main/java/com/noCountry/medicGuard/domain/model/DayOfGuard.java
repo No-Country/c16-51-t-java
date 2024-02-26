@@ -19,10 +19,10 @@ public class DayOfGuard {
     @Column(nullable = false)
     private Integer idDayOfGuard;
 
-    private LocalDate startDate;
+    @Column(name = "guard_date")
+    private LocalDate guardDate;
 
-    private LocalDate endDate;
-
-    private Long guardDuration;
-
+    @ManyToOne
+    @JoinColumn(name = "id_guard_calendar")
+    private GuardCalendar guardCalendar;
 }

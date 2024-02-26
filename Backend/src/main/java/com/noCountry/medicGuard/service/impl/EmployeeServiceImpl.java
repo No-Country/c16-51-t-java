@@ -14,6 +14,9 @@ import java.util.*;
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
+    private final static String NEW_EMPLOYEE_MESSAGE = "Nuevo empleado creado";
+    private final static String DELETE_EMPLOYEE_MESSAGE = "Empleado eliminado";
+
     private final EmployeeRepository employeeRepository;
     private final ExceptionErrorBuilder exceptionErrorBuilder;
     private final EmployeeMapper employeeMapper;
@@ -42,6 +45,25 @@ public class EmployeeServiceImpl implements EmployeeService {
             }
 
             return setEmployeeList(employeeDtoList, employeeList);
+        } catch (Exception e) {
+            return setExceptionEmployee(e, employeeDtoList);
+        }
+    }
+
+    @Override
+    public List<EmployeeDto> getEmployeeByProfessionalRegistration(RequestGetEmployee request) {
+        List<EmployeeDto> employeeDtoList = new ArrayList<>();
+        try {
+            Objects.requireNonNull(request.getData());
+
+            List<Employee> employeeList = employeeRepository.findAllByProfessionalRegistration(request.getData());
+
+            if (employeeList.isEmpty()) {
+                return setErrorEmployee(employeeDtoList, 4);
+            }
+
+            return setEmployeeList(employeeDtoList, employeeList);
+
         } catch (Exception e) {
             return setExceptionEmployee(e, employeeDtoList);
         }
@@ -85,6 +107,30 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
     }
 
+    @Override
+    public List<EmployeeDto> deleteEmployee(Long idEmployee) {
+        List<EmployeeDto> employeeDtoList = new ArrayList<>();
+        try {
+            Objects.requireNonNull(idEmployee);
+
+            employeeRepository.deleteById(idEmployee);
+
+            EmployeeDto savedEmployee = new EmployeeDto();
+            savedEmployee.setMessage(DELETE_EMPLOYEE_MESSAGE);
+            employeeDtoList.add(savedEmployee);
+
+            return employeeDtoList;
+
+        } catch (Exception e) {
+            return setExceptionEmployee(e, employeeDtoList);
+        }
+    }
+
+    @Override
+    public List<EmployeeDto> updateEmployee(RequestPutEmployee request) {
+
+    }
+
     private List<EmployeeDto> setErrorEmployee(List<EmployeeDto> employeeDtoList, int errorNum) {
         EmployeeDto employeeDto = new EmployeeDto();
         switch (errorNum) {
@@ -94,6 +140,8 @@ public class EmployeeServiceImpl implements EmployeeService {
                     exceptionErrorBuilder.setEmployeeErrorMessage(EmployeeError.ERR0002.getDescription(), employeeDto);
             case 3 ->
                     exceptionErrorBuilder.setEmployeeErrorMessage(EmployeeError.ERR0003.getDescription(), employeeDto);
+            case 4 ->
+                    exceptionErrorBuilder.setEmployeeErrorMessage(EmployeeError.ERR0004.getDescription(), employeeDto);
         }
 
         employeeDtoList.add(employeeDto);
@@ -120,7 +168,9 @@ public class EmployeeServiceImpl implements EmployeeService {
         try {
             Employee saveEmployee = employeeRepository.save(employeeMapper.dtoToEntity(request));
 
-            employeeDtoList.add(employeeMapper.entityToDto(saveEmployee));
+            EmployeeDto savedEmployee = new EmployeeDto();
+            savedEmployee.setMessage(NEW_EMPLOYEE_MESSAGE);
+            employeeDtoList.add(savedEmployee);
 
             return employeeDtoList;
 

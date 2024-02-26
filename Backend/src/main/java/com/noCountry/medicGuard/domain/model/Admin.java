@@ -17,6 +17,6 @@ public class Admin extends Person{
       @Column(nullable = false)
       private Long idAdmin;
 
-      @OneToMany
+      @OneToMany(mappedBy = "admin")
       private List<GuardCalendar> guardCalendar = new ArrayList<>();
 }

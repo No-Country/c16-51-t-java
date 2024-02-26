@@ -23,7 +23,7 @@ public class EmployeeDto {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private GuardCalendar guardCalendar;
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private Integer professionalRegistration;
+    private String professionalRegistration;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private Profession profession;
     @JsonInclude(JsonInclude.Include.NON_NULL)

@@ -16,7 +16,7 @@ public class RequestPostEmployee {
     private String username;
     private String password;
     private Rol rol;
-    private Integer professionalRegistration;
+    private String professionalRegistration;
     private Profession profession;
 
     @JsonIgnore

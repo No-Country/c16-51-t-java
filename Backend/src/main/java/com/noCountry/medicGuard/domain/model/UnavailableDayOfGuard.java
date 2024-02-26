@@ -14,12 +14,13 @@ public class UnavailableDayOfGuard {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false)
+    @Column(name = "id_unavailable_day_of_guard", nullable = false)
     private Long idUnavailableDayOfGuard;
 
-    private LocalDate startDate;
+    @Column(name = "unavailable_date")
+    private LocalDate UnavailableDate;
 
-    private LocalDate endDate;
-
-    private Long unavailableGuardDuration;
+    @ManyToOne
+    @JoinColumn(name = "id_guard_calendar")
+    private GuardCalendar guardCalendar;
 }
