@@ -1,4 +1,3 @@
 package com.noCountry.medicGuard.controller;
 
-public class AdminController {
-}
+public class AdminController {}

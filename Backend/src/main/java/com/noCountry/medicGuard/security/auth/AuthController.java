@@ -18,31 +18,32 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class AuthController {
 
-  private final AuthService services;
+  private final AuthService authService;
   private final UserRepository userRepository;
 
-  @PostMapping("/register")
-  public ResponseEntity<AuthResponse> register(@RequestBody RegisterRequest request)
-      throws Exception {
-    Optional<User> requestOp = userRepository.findByEmail(request.getEmail());
+  @PostMapping( "/register")
+  public ResponseEntity<AuthResponse> register( @RequestBody RegisterRequest request ) throws Exception {
+    Optional<User> requestOp = userRepository.findByEmail( request.getEmail() );
 
-    if (requestOp.isPresent()) {
-      log.warn("Error: Email is already registered!");
+    if ( requestOp.isPresent() ) {
+      log.warn( "Error: Email is already registered!" );
       return ResponseEntity.notFound().build();
     }
 
-    return ResponseEntity.ok(services.register(request));
+    return ResponseEntity.ok( authService.register( request ) );
   }
 
-  @PostMapping("/login")
-  public ResponseEntity<AuthResponse> authenticate(@RequestBody AuthRequest request) {
+  @PostMapping( "/login")
+  public ResponseEntity<AuthResponse> authenticate(
+          @RequestBody AuthRequest request
+  ) {
 
-    Optional<User> requestOp = userRepository.findByEmail(request.getEmail());
-    if (requestOp.isEmpty()) {
-      log.warn("Error: Email does not exists!");
+    Optional<User> requestOp = userRepository.findByEmail( request.getEmail() );
+    if ( requestOp.isEmpty() ) {
+      log.warn( "Error: Email does not exists!" );
       return ResponseEntity.notFound().build();
     }
 
-    return ResponseEntity.ok(services.authenticate(request));
+    return ResponseEntity.ok( authService.authenticate( request ) );
   }
 }

@@ -15,28 +15,25 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 @Service
-public class JwtServices {
+public class JwtService {
 
   @Value("${application.security.jwt.secret-key}")
   private String SECRET_KEY;
 
-  @Value("${application.security.jwt.expiration}")
+  @Value("${application.security.jwt.expirationMs}")
   private long jwtExpiration;
 
   private Key getSignkey() {
     byte[] keybytes = Decoders.BASE64.decode(SECRET_KEY);
-
     return Keys.hmacShaKeyFor(keybytes);
   }
 
   private Claims extractAllClaims(String token) {
-
     return Jwts.parserBuilder().setSigningKey(getSignkey()).build().parseClaimsJws(token).getBody();
   }
 
   public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
     final Claims claims = extractAllClaims(token);
-
     return claimsResolver.apply(claims);
   }
 
@@ -64,9 +61,7 @@ public class JwtServices {
         .setSubject(userDetails.getUsername())
         .setIssuedAt(new Date(System.currentTimeMillis()))
         .setExpiration(new Date(System.currentTimeMillis() + expiration))
-
         .signWith(getSignkey(), SignatureAlgorithm.HS256)
-
         .compact();
   }
 

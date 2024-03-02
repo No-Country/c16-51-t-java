@@ -1,30 +1,31 @@
 package com.noCountry.medicGuard.domain.model;
 
-import com.noCountry.medicGuard.enumeration.Rol;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @MappedSuperclass
-public abstract class Person {
+abstract public class Person {
 
-  @Column(nullable = false)
-  private String name;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
-  @Column(nullable = false)
-  private String lastname;
+    @Column(nullable = false)
+    private String firstname;
 
-  @Column(nullable = false, unique = true)
-  private String email;
+    @Column(nullable = false)
+    private String lastname;
 
-  @Column(nullable = false, unique = true)
-  private String username;
+    @Column(nullable = false)
+    private String email;
 
-  @Column(nullable = false)
-  private String pass;
-
-  @Enumerated(EnumType.STRING)
-  private Rol rol;
+    public Person(String firstname, String lastname, String email) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+    }
 }

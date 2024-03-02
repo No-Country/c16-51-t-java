@@ -5,7 +5,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -20,39 +19,33 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 @EnableMethodSecurity
 public class SecurityConfig {
-    private final JwtAuthenticationFilter jwtAuthFilter;
-    private final AuthenticationProvider authenticationProvider;
-    private AuthenticationEntryPoint authenticationEntryPoint;
+  private final JwtAuthenticationFilter jwtAuthFilter;
+  private final AuthenticationProvider authenticationProvider;
+  private AuthenticationEntryPoint authenticationEntryPoint;
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests(
-                        (authz) ->
-                                authz
-                                        //                  Path to log in before the user was authenticated
-                                        .requestMatchers("/api/auth/**")
-                                        .permitAll()
+  @Bean
+  public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    http
+            .authorizeHttpRequests(
+            (requests) ->
+                requests
+                    .requestMatchers("/", "/api/auth/**")
+                    .permitAll()
+                    .requestMatchers("/api/admin/**").hasRole("ADMIN")
+                    .requestMatchers("/api/user/**").hasAnyRole("USER", "ADMIN")
+                    .anyRequest()
+                    .authenticated())
 
-                                        //                  Path to access admin
-                                        .requestMatchers("/api/admin/**")
-                                        .hasRole("ADMIN")
+        .authenticationProvider(authenticationProvider)
+        .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
+        .sessionManagement(
+            sessionConfig -> sessionConfig.sessionCreationPolicy(SessionCreationPolicy.STATELESS)).cors(AbstractHttpConfigurer::disable)
+        .exceptionHandling(
+            httpSecurityExceptionHandlingConfigurer ->
+                httpSecurityExceptionHandlingConfigurer.authenticationEntryPoint(
+                    authenticationEntryPoint))
+        .csrf(AbstractHttpConfigurer::disable);
 
-                                        //                  Path to access user
-                                        .requestMatchers("/api/user/**")
-                                        .hasRole("USER")
-                                        .anyRequest()
-                                        .authenticated())
-                .authenticationProvider(authenticationProvider)
-                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
-                .sessionManagement(
-                        sessionConfig -> sessionConfig.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .cors(Customizer.withDefaults())
-                .exceptionHandling(
-                        httpSecurityExceptionHandlingConfigurer -> httpSecurityExceptionHandlingConfigurer.authenticationEntryPoint(
-                                authenticationEntryPoint))
-                .csrf(AbstractHttpConfigurer::disable);
-
-        return http.build();
-    }
+    return http.build();
+  }
 }
-

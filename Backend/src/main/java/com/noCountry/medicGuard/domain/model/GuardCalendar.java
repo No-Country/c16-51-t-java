@@ -20,6 +20,9 @@ public class GuardCalendar {
   @OneToOne
   private Employee employee;
 
+  @ManyToOne
+  private Admin admin;
+
   @OneToMany
   private List<DayOfGuard> dayOfGuards = new ArrayList<>();
 

@@ -3,7 +3,7 @@ package com.noCountry.medicGuard.security.services;
 import com.noCountry.medicGuard.security.auth.AuthRequest;
 import com.noCountry.medicGuard.security.auth.AuthResponse;
 import com.noCountry.medicGuard.security.auth.RegisterRequest;
-import com.noCountry.medicGuard.security.jwt.JwtServices;
+import com.noCountry.medicGuard.security.jwt.JwtService;
 import com.noCountry.medicGuard.security.user.Role;
 import com.noCountry.medicGuard.security.user.User;
 import com.noCountry.medicGuard.security.user.UserRepository;
@@ -19,7 +19,7 @@ public class AuthService {
 
   private final UserRepository repository;
   private final PasswordEncoder passwordEncoder;
-  private final JwtServices jwtServices;
+  private final JwtService JwtService;
   private final AuthenticationManager authenticationManager;
 
   public AuthResponse register(RegisterRequest request) {
@@ -30,13 +30,15 @@ public class AuthService {
     user.setEmail(request.getEmail());
     user.setPassword(passwordEncoder.encode(request.getPassword()));
 
-    Role role = Role.valueOf(request.getRole());
+    if (request.getRole() == null) {
+      request.setRole(Role.USER);
+    }
 
-    user.setRole(role);
+    user.setRole(request.getRole());
 
     repository.save(user);
 
-    var jwtToken = jwtServices.generateToken(user);
+    var jwtToken = JwtService.generateToken(user);
 
     return AuthResponse.builder().token(jwtToken).build();
   }
@@ -46,7 +48,7 @@ public class AuthService {
         new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
 
     var user = repository.findByEmail(request.getEmail()).orElseThrow();
-    var jwtToken = jwtServices.generateToken(user);
+    var jwtToken = JwtService.generateToken(user);
 
     return AuthResponse.builder().token(jwtToken).build();
   }
