@@ -1,28 +1,47 @@
 package com.noCountry.medicGuard.domain.model;
 
-import com.noCountry.medicGuard.enumeration.Profession;
-import com.noCountry.medicGuard.enumeration.Rol;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import java.util.Date;
-import java.util.List;
+import com.noCountry.medicGuard.enumeration.*;
+import com.noCountry.medicGuard.security.user.Role;
+import com.noCountry.medicGuard.security.user.User;
+import jakarta.persistence.*;
+import lombok.*;
 
+@EqualsAndHashCode(callSuper = true)
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-public class Employee extends Person{
+@Table(name = "EMPLOYEE")
+public class Employee extends Person {
 
-    private int professionalRegistration;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(nullable = false)
+    private Long id;
 
+    @OneToOne
+    private GuardCalendar guardCalendar;
+
+    @Column(nullable = false)
+    private Long profRegistration;
+
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Profession profession;
 
-    private Boolean isActive;
-    private List<Date> daysNotAvailable;
-    private int weekDayCounter;
-    private int weekendDayCounter;
-    private int holidayCounter;
+    @Column(nullable = false)
+    private Boolean isActive = false;
 
-    public Employee(Integer id, String name, String lastname, String email, String user, String pass, Rol rol, Calendar_ calendar) {
-        super(id, name, lastname, email, user, pass, rol);
+    private Integer weekDayCounter;
+    private Integer weekendDayCounter;
+    private Integer holidayCounter;
+
+    public Employee(long id, String firstname, String lastname, String email,
+                    Long profRegistration, Profession profession, Boolean isActive) {
+        super(firstname, lastname, email);
+        this.id = id;
+        this.profRegistration = profRegistration;
+        this.profession = profession;
+        this.isActive = isActive;
     }
 }
