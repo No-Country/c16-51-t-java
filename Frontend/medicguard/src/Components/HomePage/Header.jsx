@@ -1,19 +1,16 @@
-import React from "react";
-import Container from 'react-bootstrap/Container';
-// import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
 import { Button } from "react-bootstrap";
-const Header = () => {
-    return (
-        <>
-            <Navbar className="header">
-                <Container>
-                    <Navbar.Brand href="#home">Medic Guard</Navbar.Brand>
-                    <Button className="logOut">Cerrar Sesión</Button>
-                </Container>
-            </Navbar>
-        </>
-    );
-}
 
-export default Header; 
+const Header = () => {
+  return (
+    <>
+      <div className="header">
+        <div>
+          <a href=""></a>
+        </div>
+        <a href=""><Button className="logOut">Cerrar Sesión</Button></a>
+      </div>
+    </>
+  );
+};
+
+export default Header;
