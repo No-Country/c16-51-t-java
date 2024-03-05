@@ -1,5 +1,4 @@
 import React, {useState } from 'react'
-import React from 'react'
 import FormInput from './FormInput'
 import Link from './Link'
 import axios from 'axios'
@@ -35,6 +34,7 @@ const LoginForm = () => {
             Olvidé mi contraseña<strong> Click aqui para recuperar</strong>
           </Link>
           <Button type="submit">Iniciar Sesión</Button>
+          <Button type="submit">Registrarme</Button>
         </section>
       </form>
     </>

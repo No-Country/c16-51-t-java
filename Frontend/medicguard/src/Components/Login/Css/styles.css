@@ -21,6 +21,10 @@ h2{
     font-size: 1.5rem;
     font-weight: 700;
 }
+h3{
+    font-size: 1rem;
+    font-weight: 700;
+}
 a{
     text-decoration: none;
     color: var(--main-color);
@@ -100,6 +104,24 @@ a:hover{
     padding: 1em;
     margin-bottom: 1.25rem;
     font-size: 0.875rem;
+}
+.input-container input[type="password"],
+.input-container select {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    border-color: rgba(42, 195, 130, 0.37);
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+}
+
+.input-container select {
+    padding: 1em;
+    margin-bottom: 1.25rem;
+    background-color: rgba(42, 195, 130, 0.37);
+
 }
 input{
     background-color: rgba(42, 195, 130, 0.37);
