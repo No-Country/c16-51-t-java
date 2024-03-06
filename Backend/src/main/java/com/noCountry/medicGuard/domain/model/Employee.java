@@ -1,33 +1,47 @@
 package com.noCountry.medicGuard.domain.model;
 
-import com.noCountry.medicGuard.enumeration.Profession;
-import jakarta.persistence.Entity;
-import java.util.Date;
-import java.util.List;
+import com.noCountry.medicGuard.enumeration.*;
+import com.noCountry.medicGuard.security.user.Role;
+import com.noCountry.medicGuard.security.user.User;
+import jakarta.persistence.*;
+import lombok.*;
 
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
-
+@EqualsAndHashCode(callSuper = true)
 @Data
 @AllArgsConstructor
-@RequiredArgsConstructor
+@NoArgsConstructor
 @Entity
-public class Employee {
+@Table(name = "EMPLOYEE")
+public class Employee extends Person {
 
-//    Calendar class is missing
-//    private final Calendar calendar
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(nullable = false)
+    private Long id;
 
-    private int professionalRegistration;
+    @OneToOne
+    private GuardCalendar guardCalendar;
 
+    @Column(nullable = false)
+    private Long profRegistration;
+
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Profession profession;
 
-    private Boolean isActive;
-    private List<Date> daysNotAvailable;
-    private int weekDayCounter;
-    private int weekendDayCounter;
-    private int holidayCounter;
+    @Column(nullable = false)
+    private Boolean isActive = false;
+
+    private Integer weekDayCounter;
+    private Integer weekendDayCounter;
+    private Integer holidayCounter;
+
+    public Employee(long id, String firstname, String lastname, String email,
+                    Long profRegistration, Profession profession, Boolean isActive) {
+        super(firstname, lastname, email);
+        this.id = id;
+        this.profRegistration = profRegistration;
+        this.profession = profession;
+        this.isActive = isActive;
+    }
 }
