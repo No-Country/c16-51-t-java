@@ -1,15 +1,24 @@
 package com.noCountry.medicGuard.domain.model;
 
-import jakarta.persistence.Entity;
-import lombok.AllArgsConstructor;
+import jakarta.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
-@RequiredArgsConstructor
+@NoArgsConstructor
 @Entity
-public class Admin {
+@Table(name = "ADMIN")
+public class Admin extends Person {
 
-  //    Entity Calendars must be created
-  //    private final Calendar calendar;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false)
+    private Long idAdmin;
+
+    @OneToMany
+    private List<GuardCalendar> guardCalendar = new ArrayList<>();
 }
