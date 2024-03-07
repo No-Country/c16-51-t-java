@@ -15,7 +15,8 @@ const CreateInputContainer = ({ label, type, name, id, options, value, onChange 
           ))}
         </select>
       ) : (
-        <Input type={type} name={name} id={id} />
+        // Pass value and onChange props to the Input component for non-select types
+        <Input type={type} name={name} id={id} value={value} onChange={onChange} />
       )}
     </div>
   );
