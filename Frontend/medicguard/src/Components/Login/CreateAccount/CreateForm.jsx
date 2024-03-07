@@ -3,6 +3,7 @@ import CreateCopy from './CreateCopy';
 import CreateInputContainer from './CreateInputContainer';
 import CreateLoginContainer from './CreateLoginContainer';
 import ComboBox from "./ComboBox";
+import axios from 'axios';
 
 const API_BASE_URL = 'http://localhost:8080';
 
@@ -21,7 +22,7 @@ const CreateForm = () => {
       lastname: apellido,
       email: email,
       password: contraseña,
-      role: role.toUpperCase(), // The role is converted to uppercase
+      role: role, // The role is converted to uppercase
     };
 
     try {
@@ -37,7 +38,6 @@ const CreateForm = () => {
       
     } catch (error) {
       console.error('Error submitting form:', error);
-      console.log("ERROR FATAL LOCO")
     }
   };
 
