@@ -4,24 +4,41 @@ import CreateInputContainer from './CreateInputContainer';
 import CreateLoginContainer from './CreateLoginContainer';
 import ComboBox from "./ComboBox";
 
-const CreateForm = () => {
-  const [nombre, setNombre] = useState(''); // State for the Nombre field
-  const [apellido, setApellido] = useState(''); // State for the Apellido field
-  const [email, setEmail] = useState(''); // State for the Email field
-  const [contraseña, setContraseña] = useState(''); // State for the Contraseña field
-  const [role, setRole] = useState(''); // State for the Role field (already present)
+const API_BASE_URL = 'http://localhost:8080';
 
-  // Form submission handler
-  const handleSubmit = (e) => {
-    e.preventDefault(); // Prevent the default form submission
-    // Log the form data to the console
-    console.log({
-      nombre,
-      apellido,
-      email,
-      contraseña,
-      role,
-    });
+const CreateForm = () => {
+  const [nombre, setNombre] = useState('');
+  const [apellido, setApellido] = useState('');
+  const [email, setEmail] = useState('');
+  const [contraseña, setContraseña] = useState('');
+  const [role, setRole] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // Prepare the data in the format the backend expects
+    const userData = {
+      firstname: nombre,
+      lastname: apellido,
+      email: email,
+      password: contraseña,
+      role: role.toUpperCase(), // The role is converted to uppercase
+    };
+
+    try {
+      // Send the POST request to the register endpoint
+      const response = await axios.post(`${API_BASE_URL}/api/auth/register`, userData, {
+        headers: {
+          'Content-Type': 'application/json',
+          // Include any additional headers like the Authorization header here
+        },
+      });
+
+      console.log('Success:', response.data);
+      
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      console.log("ERROR FATAL LOCO")
+    }
   };
 
   return (
@@ -36,14 +53,13 @@ const CreateForm = () => {
         <ComboBox
           label="Role"
           options={[
-            { label: 'Admin', value: 'admin' },
-            { label: 'User', value: 'user' },
+            { label: 'Admin', value: 'ADMIN' }, // Ensure options are in uppercase
+            { label: 'User', value: 'USER' },
           ]}
           value={role}
           onChange={(e) => setRole(e.target.value)}
         />
-        {/* Update CreateLoginContainer to include the submit button if it's not already handled */}
-        <CreateLoginContainer />
+        <CreateLoginContainer onSubmit={handleSubmit}/>
       </form>
     </>
   );
