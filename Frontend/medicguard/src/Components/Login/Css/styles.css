@@ -93,6 +93,7 @@ a:hover{
     width: 328px;
 }
 .input-container input[type="text"],
+.input-container input[type="email"],
 .input-container input[type="password"] {
     display: block;
     width: 100%;
