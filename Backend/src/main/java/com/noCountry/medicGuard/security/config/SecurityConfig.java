@@ -27,24 +27,21 @@ public class SecurityConfig {
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     http
             .authorizeHttpRequests(
-            (requests) ->
-                requests
-                    .requestMatchers("/", "/api/auth/**")
-                    .permitAll()
-                    .requestMatchers("/api/admin/**").hasRole("ADMIN")
-                    .requestMatchers("/api/user/**").hasAnyRole("USER", "ADMIN")
-                    .anyRequest()
-                    .authenticated())
+                    (requests) ->
+                            requests
+                                    .requestMatchers("/")
+                                    .permitAll()
+            )
 
-        .authenticationProvider(authenticationProvider)
-        .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
-        .sessionManagement(
-            sessionConfig -> sessionConfig.sessionCreationPolicy(SessionCreationPolicy.STATELESS)).cors(AbstractHttpConfigurer::disable)
-        .exceptionHandling(
-            httpSecurityExceptionHandlingConfigurer ->
-                httpSecurityExceptionHandlingConfigurer.authenticationEntryPoint(
-                    authenticationEntryPoint))
-        .csrf(AbstractHttpConfigurer::disable);
+            .authenticationProvider(authenticationProvider)
+            .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
+            .sessionManagement(
+                    sessionConfig -> sessionConfig.sessionCreationPolicy(SessionCreationPolicy.STATELESS)).cors(AbstractHttpConfigurer::disable)
+            .exceptionHandling(
+                    httpSecurityExceptionHandlingConfigurer ->
+                            httpSecurityExceptionHandlingConfigurer.authenticationEntryPoint(
+                                    authenticationEntryPoint))
+            .csrf(AbstractHttpConfigurer::disable);
 
     return http.build();
   }
