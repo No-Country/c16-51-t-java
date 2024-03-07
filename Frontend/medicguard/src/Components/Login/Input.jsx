@@ -1,11 +1,9 @@
-import React from 'react'
+import React from 'react';
 
-const Input = ({type, name,id}) => {
+const Input = ({ type, name, id, value, onChange }) => {
   return (
-    <>
-       <input type={type} name={name} id={id} />
-    </>
-  )
+    <input type={type} name={name} id={id} value={value} onChange={onChange} />
+  );
 }
 
-export default Input
+export default Input;
