@@ -7,6 +7,6 @@ import ModalCalendar from './Components/PopUp/ModalCalendar'
 import CreateAccount from './Components/Login/CreateAccount/CreateAccount'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-<CreateAccount></CreateAccount>
+<Generalogin></Generalogin>
   </React.StrictMode>,
 )

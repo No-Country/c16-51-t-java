@@ -7,6 +7,12 @@ import axios from 'axios';
 
 const API_BASE_URL = 'http://localhost:8080';
 
+axios.interceptors.request.use(function (config) {
+  const token = localStorage.getItem('jwtToken');
+  config.headers.Authorization = token ? `Bearer ${token}` : '';
+  return config;
+});
+
 const CreateForm = () => {
   const [nombre, setNombre] = useState('');
   const [apellido, setApellido] = useState('');
@@ -16,29 +22,26 @@ const CreateForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Prepare the data in the format the backend expects
     const userData = {
       firstname: nombre,
       lastname: apellido,
       email: email,
       password: contraseña,
-      role: role.toUpperCase(), // The role is converted to uppercase
+      role: role,
     };
 
     try {
-      // Send the POST request to the register endpoint
-      const response = await axios.post(`${API_BASE_URL}/api/auth/register`, userData, {
-        headers: {
-          'Content-Type': 'application/json',
-          // Include any additional headers like the Authorization header here
-        },
-      });
-
-      console.log('Success:', response.data);
+      const response = await axios.post(`${API_BASE_URL}/api/auth/register`, userData);
       
+      // Suponiendo que el backend responde con un token JWT cuando el registro es exitoso
+      const token = response.data.token;
+      localStorage.setItem('jwtToken', token); // Guarda el token en localStorage
+
+      console.log('Registration Success:', response.data);
+      // Aquí puedes redirigir al usuario o hacer otras acciones post registro
     } catch (error) {
-      console.error('Error submitting form:', error);
-      console.log("ERROR FATAL LOCO")
+      console.error('Error during registration:', error);
+      // Aquí debes manejar los errores, como mostrar un mensaje al usuario
     }
   };
 
