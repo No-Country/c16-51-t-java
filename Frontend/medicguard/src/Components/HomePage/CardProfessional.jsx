@@ -41,7 +41,7 @@ const CardProfessional = () => {
   const editShow = () => setShowEditProfile(true);
 
   // Cargar Imagen
-  const [image, setImage] = useState("");
+  const [setImage] = useState("");
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -291,7 +291,6 @@ const CardProfessional = () => {
           </div>
         </Modal.Body>
       </Modal>
-
       <Modal
         show={showEditProfile}
         onHide={editClose}
